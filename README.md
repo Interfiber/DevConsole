@@ -7,7 +7,7 @@ This program is a VERY basic js console for you're google admin(school) blocks i
 ## How to inject the console into a page
 To inject the code into a webpage goto any page, then type ```javascript:``` into the URL bar, and paste the following code in after it:
 ```javascript
-const script = document.createElement("script"); script.src = "https://raw.githubusercontent.com/Interfiber/DevConsole/main/console.js"; document.body.appendChild(script);
+const script = document.createElement("script"); script.src = "https://raw.githack.com/Interfiber/DevConsole/main/console.js"; document.body.appendChild(script);
 ```
 If everything works well you should see a box somewhere on the webpage titled ```Dev Console```
 
