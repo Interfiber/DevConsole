@@ -16,10 +16,19 @@ console.warn = function (){
     console.stdlog.apply(console, arguments);
 }
 console.log("Performing injection...");
-document.body.innerHTML += "<div class='devconsole'><h1>Dev console</h1>\n<textarea class=\"devcontent\"></textarea>\n<input type='text' placeholder='Enter Command' class=\"devbox\"></input></div>";
+document.body.innerHTML += "<div class='devconsole'><h1>Dev console</h1>\n<textarea disabled=true cols=30 rows=7 class=\"devcontent\"></textarea>\n<p></p>\n<input type='text' placeholder='Enter Command' class=\"devbox\"></input></div>";
+document.querySelector(".devconsole").style = {
+	backgroundColor: "black"
+};
 document.querySelector(".devbox").addEventListener("keyup",  function (event){
 	if (event.keyCode == 13){
 		event.preventDefault();
+		if (document.body.querySelector(".devbox").value == "help"){
+			console.logs.push("Devconsole help page:");
+			console.logs.push("Internals commands:");
+			console.logs.push("this.ClearConsole(); - Clear all console data");
+			console.logs.push("this.OpenInspect(); - Open inspect element");
+		}
 		const script = document.createElement("script")
 		script.text = document.body.querySelector(".devbox").value
 		document.body.appendChild(script)
@@ -28,6 +37,14 @@ document.querySelector(".devbox").addEventListener("keyup",  function (event){
 })
 this.ClearConsole = function (){
 	console.logs = [];
+	console.warns = [];
+	console.errors = [];
+}
+this.OpenInspect = function (){
+	console.warns.push("Inspect element is unstable");
+	document.body.style = {
+		backgroundColor: "black"
+	};
 }
 console.log("Injected devconsole!");
 var intervalId = window.setInterval(function(){
